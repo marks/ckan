@@ -9,6 +9,16 @@
     {{ h.popular('views', res.tracking_summary.total, min=10) }}
   </a>
   {% endblock %}
+  {% block resource_item_views %}
+    {% if res.has_views %}
+      <ul class='view-list'>
+        {% for view in res.views %}
+          {% snippet "package/snippets/resource_views_list_item.html", view=view, pkg=pkg, is_edit=is_edit, is_selected=is_selected %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endblock %}
+
   {% block resource_item_description %}
     <p class="description">
       {% if res.description %}
@@ -16,6 +26,7 @@
       {% endif %}
     </p>
   {% endblock %}
+
   {% block resource_item_explore %}
   {% if not url_is_edit %}
   <div class="dropdown btn-group">
@@ -60,5 +71,6 @@
     </ul>
   </div>
   {% endif %}
+
   {% endblock %}
 </li>

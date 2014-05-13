@@ -390,10 +390,10 @@ class PackageController(base.BaseController):
             resource['can_be_previewed'] = self._resource_preview(
                 {'resource': resource, 'package': c.pkg_dict})
 
-            resource_views = get_action('resource_view_list')(
+            resource['views'] = get_action('resource_view_list')(
                 context, {'id': resource['id']})
-            resource['has_views'] = len(resource_views) > 0
-
+            resource['has_views'] = len(resource['views']) > 0
+    
         self._setup_template_variables(context, {'id': id},
                                        package_type=package_type)
 
